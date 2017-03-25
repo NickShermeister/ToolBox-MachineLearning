@@ -20,9 +20,10 @@ def display_digits():
 
 def train_model():
     data = load_digits()
-    num_trials = 10
+    num_trials = 100
     train_percentages = range(5, 95, 5)
     test_accuracies = numpy.zeros(len(train_percentages))
+    # print(train_percentages)
 
     # train models with training percentages between 5 and 90 (see
     # train_percentages) and evaluate the resultant accuracy for each.
@@ -30,8 +31,18 @@ def train_model():
     # variability.
     # For consistency with the previous example use
     # model = LogisticRegression(C=10**-10) for your learner
-
-    # TODO: your code here
+    index = 0
+    test = []
+    for percents in range(5, 95, 5):
+        finalmodscore = 0
+        for x in range (0, num_trials):
+            X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, train_size = percents/100.0)
+            model = LogisticRegression(C=10**-1)
+            model.fit(X_train, y_train)
+            finalmodscore += model.score(X_test, y_test)
+            test.append((percents, x))
+        test_accuracies[index] = finalmodscore / num_trials
+        index += 1
 
     fig = plt.figure()
     plt.plot(train_percentages, test_accuracies)
@@ -42,5 +53,6 @@ def train_model():
 
 if __name__ == "__main__":
     # Feel free to comment/uncomment as needed
-    display_digits()
     # train_model()
+    # display_digits()
+    train_model()

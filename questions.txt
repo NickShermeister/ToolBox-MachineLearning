@@ -1,0 +1,10 @@
+1. The general trend in the curve is an increase in accuracy with an increase in the portion of the training set used for training.
+2. The noisiest part of the graph appears to be those between 45-65% of the data used for training.
+3. At about 3000 trials, the cure appears approximately smooth.
+4.
+at C = 100**-10:
+Short spike up up to 15% data used, then immediate downspike to about 10% accuracy for the entire thing.
+at c = 10**-100:
+Little variation around 0.0990; as the percent of data used for training increases variation increases 
+at c = 10**-1:
+It starts at 88% accurate and quickly maxes out at just shy of 100%.
